@@ -1,0 +1,3 @@
+bottle
+gevent
+python-telegram-bot
