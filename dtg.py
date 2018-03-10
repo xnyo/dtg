@@ -56,8 +56,7 @@ def apiHandler():
 	}
 	try:
 		data = json.loads(bottle.request.body.read().decode("utf-8"))
-		data = dict((k, v) for k, v in data.items() if v is not None and v != "null")
-		#data["text_only_msg"] = " ".join(["`" + x + "`" if x.startswith("@") else x for x in data["text_only_msg"].split(" ")])
+		data = dict((k, escapeMarkdown(v)) for k, v in data.items() if v is not None and v != "null")
 		data["text_only_msg"] = "\n".join(x for x in data["text_only_msg"].split("\n")[:-1] if x != "")
 
 		message = telegram.Emoji.WARNING_SIGN + " *{event_title}*"
